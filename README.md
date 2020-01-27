@@ -1,2 +1,3 @@
 # falconbot
-An automated bot that follows social media accounts
+
+An automated bot that watches social media accounts.
