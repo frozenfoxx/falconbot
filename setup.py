@@ -25,9 +25,16 @@ setuptools.setup(
         "License :: Apache License v2",
         "Operating System :: OS Independent",
     ],
+    install_requires=[],
+    scripts=[
+        "scripts/falconbot",
+    ],
     entry_points = {
         "console_scripts": ["falconbot=falconbot.falconbot:main"],
     },
+    data_files=[
+        ('/etc/falconbot', ['conf/falconbot.conf'])
+    ],
     include_package_data=True,
 )
 
