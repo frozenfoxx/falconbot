@@ -1,0 +1,8 @@
+#!/usr/bin/env python3
+'''
+Run falconbot
+'''
+
+import falconbot
+
+falconbot.main()
