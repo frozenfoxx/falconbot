@@ -2,7 +2,7 @@
 
 import importlib
 import sys
-from .options import Options
+from options import Options
 
 def main():
     """ Main execution thread """
