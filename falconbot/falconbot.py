@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
-
+if __package__:
+    from .options import Options
+else:
+    from options import Options
 import importlib
 import sys
-from options import Options
 
 def main():
     """ Main execution thread """
