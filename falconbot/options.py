@@ -1,8 +1,9 @@
 """ Configuration loading and argument handling """
 
-import sys
 import argparse
 import configparser
+import sys
+import os
 
 class Options(object):
     """ Option-handling Object """
@@ -16,10 +17,10 @@ class Options(object):
         parser = argparse.ArgumentParser()
         parser.add_argument("-c", "--config", dest="config", type=str, help="path to config file")
         parser.add_argument("-e", "--environment", dest="environment", default="DEFAULT", type=str, help="config environment")
-        parser.add_argument("-p", "--password", dest="password", type=str, help="account password")
+        parser.add_argument("-p", "--acct_password", dest="acct_password", type=str, help="account password")
         parser.add_argument("-s", "--service", dest="url", type=str, help="target service")
         parser.add_argument("-t", "--token", dest="token", type=str, help="API token")
-        parser.add_argument("-u", "--username", dest="username", type=str, help="account name")
+        parser.add_argument("-u", "--acct_username", dest="acct_username", type=str, help="account name")
         args = parser.parse_args()
 
         return args
@@ -42,8 +43,13 @@ class Options(object):
             sys.exit("Unable to read config file, does it exist?")
 
         print("[+] Loading options from file")
-        for k in conf[args.environment]:
-            self.options[k] = conf[args.environment][k]
+        for key in conf[args.environment]:
+            self.options[key] = conf[args.environment][key]
+
+        print("[+] Loading environment variable overrides")
+        for arg in vars(args):
+            if arg.upper() in os.environ:
+                self.options[arg] = os.environ[arg.upper()]
 
         print("[+] Loading argument overrides")
         for arg in vars(args):
