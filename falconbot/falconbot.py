@@ -12,7 +12,7 @@ def main():
     """ Main execution thread """
 
     options = Options().load_options()
-    prompt = Prompt()
+    prompt = Prompt(options)
     prompt.prompt = 'falconbot> '
     prompt.cmdloop('[+] Starting falconbot interface...')
 
