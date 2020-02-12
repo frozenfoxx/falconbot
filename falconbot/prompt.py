@@ -15,6 +15,12 @@ class Prompt(Cmd, object):
 
         self.options = options
 
+    def do_options(self, args):
+        """ List loaded options """
+
+        for key in self.options:
+            print("  " + str(key) + ": " + str(self.options[key]))
+
     def do_quit(self, args):
         """ Quit the program """
 

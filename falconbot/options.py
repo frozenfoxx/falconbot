@@ -15,10 +15,10 @@ class Options(object):
         """ Parse optional arguments """
 
         parser = argparse.ArgumentParser()
-        parser.add_argument("-c", "--config", dest="config", type=str, help="path to config file")
+        parser.add_argument("-c", "--config", dest="config", default="/etc/falconbot/conf/falconbot.conf", type=str, help="path to config file")
         parser.add_argument("-e", "--environment", dest="environment", default="DEFAULT", type=str, help="config environment")
         parser.add_argument("-p", "--acct_password", dest="acct_password", type=str, help="account password")
-        parser.add_argument("-s", "--service", dest="url", type=str, help="target service")
+        parser.add_argument("-s", "--service", dest="service", type=str, help="target service")
         parser.add_argument("-t", "--token", dest="token", type=str, help="API token")
         parser.add_argument("-u", "--acct_username", dest="acct_username", type=str, help="account name")
         args = parser.parse_args()
@@ -32,19 +32,13 @@ class Options(object):
         conf = configparser.ConfigParser()
 
         print("[+] Reading configuration file")
-        if isinstance(args.config, str):
-            conf_location = args.config
-        else:
-            conf_location = "/etc/falconbot/conf/falconbot.conf"
-
         try:
-            conf.read(conf_location)
+            conf.read(args.config)
+            print("[+] Loading options from file")
+            for key in conf[args.environment]:
+                self.options[key] = conf[args.environment][key]
         except Exception as e:
             sys.exit("Unable to read config file, does it exist?")
-
-        print("[+] Loading options from file")
-        for key in conf[args.environment]:
-            self.options[key] = conf[args.environment][key]
 
         print("[+] Loading environment variable overrides")
         for arg in vars(args):
