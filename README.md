@@ -1,6 +1,6 @@
 # falconbot
 
-[![Build Status](https://cloud.drone.io/api/badges/frozenfoxx/falconbot/status.svg)](https://cloud.drone.io/frozenfoxx/falconbot)
+[![Build Status](https://cloud.drone.io/api/badges/frozenfoxx/falconbot/status.svg?ref=refs/heads/main)](https://cloud.drone.io/frozenfoxx/falconbot)
 
 An automated bot that watches social media accounts.
 
