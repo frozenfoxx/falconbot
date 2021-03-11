@@ -4,6 +4,8 @@ An automated bot that watches social media accounts.
 
 Docker Hub: [https://hub.docker.com/r/frozenfoxx/falconbot/](https://hub.docker.com/r/frozenfoxx/falconbot/)
 
+[![Build Status](https://cloud.drone.io/api/badges/frozenfoxx/falconbot/status.svg)](https://cloud.drone.io/frozenfoxx/falconbot)
+
 # How to Build
 
 ## Docker
